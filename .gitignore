@@ -4,8 +4,11 @@ __pycache__/
 *$py.class
 *.egg-info/
 dist/
-build/
+/build/
 .eggs/
+
+# Explicitly track PDF.js build files (otherwise blocked by /build/ rule)
+!docs/pdfjs/build/
 
 # Node
 node_modules/
