@@ -46,10 +46,11 @@ function encodePath(path) {
 }
 
 // 构建 PDF.js Viewer 的 URL
-// viewer.html 在 docs/pdfjs/web/，因此从 index.html 到 viewer.html
-// 的相对路径是 ./pdfjs/web/viewer.html
+// viewer.html 在 docs/pdfjs/web/，PDF 在 docs/reports/
+// file 参数是相对于 viewer.html 的路径：
+// viewer.html 位于 pdfjs/web/ → 需要 ../../ 回到 docs/ 根 → 再进入 reports/
 function buildViewerUrl(pdfPath) {
-  return "./pdfjs/web/viewer.html?file=" + encodePath("../" + pdfPath);
+  return "./pdfjs/web/viewer.html?file=" + encodePath("../../" + pdfPath);
 }
 
 // ==========================================================================
