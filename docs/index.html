@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>项目文档中心</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>项目文档中心</h1>
+      <p class="subtitle">在线浏览项目研究报告与技术文档</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="intro">
+      <p>
+        本页面提供项目 PDF 文档的在线阅读与下载。点击"在线阅读"可使用内置阅读器，
+        支持目录、搜索、页码跳转、缩放、打印和下载功能。
+      </p>
+      <p class="privacy-note">
+        ⚠️ 请注意：GitHub Pages 为公开访问。请勿将未公开论文、内部材料、
+        基金申请书或合作方数据上传至此。
+      </p>
+    </section>
+
+    <section class="docs-section">
+      <h2>文档列表</h2>
+      <div id="doc-list" class="doc-grid">
+        <!-- 由 app.js 动态生成 -->
+      </div>
+    </section>
+
+    <section class="add-doc-info">
+      <h3>如何添加新文档</h3>
+      <ol>
+        <li>将 PDF 文件放入 <code>docs/reports/</code> 目录；</li>
+        <li>在 <code>docs/assets/app.js</code> 的 <code>documents</code> 数组中添加条目；</li>
+        <li>提交并推送到 GitHub。</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        基于
+        <a href="https://github.com/mozilla/pdf.js" target="_blank" rel="noopener noreferrer">Mozilla PDF.js</a>
+        构建 &nbsp;|&nbsp;
+        <a href="pdfjs/LICENSE" target="_blank">PDF.js License</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
