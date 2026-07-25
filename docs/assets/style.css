@@ -249,21 +249,90 @@ main {
   text-decoration: underline;
 }
 
-/* --- 响应式 ------------------------------------------------------ */
+/* --- 响应式 — 手机端 (< 600px) ----------------------------------- */
 @media (max-width: 600px) {
   .site-header {
-    padding: 24px 0 18px;
+    padding: 20px 0 16px;
   }
   .site-header h1 {
-    font-size: 1.35rem;
+    font-size: 1.3rem;
   }
+  .subtitle {
+    font-size: 0.85rem;
+  }
+
+  .container {
+    padding: 0 14px;
+  }
+
+  main {
+    padding-top: 20px;
+    padding-bottom: 36px;
+  }
+
   .doc-grid {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
+
+  .doc-card {
+    padding: 16px;
+  }
+
+  .doc-card .doc-title {
+    font-size: 1rem;
+  }
+
   .doc-card .doc-actions {
     flex-direction: column;
+    gap: 6px;
   }
+
   .btn {
     justify-content: center;
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    min-height: 44px;
+    border-radius: 8px;
+  }
+
+  .intro {
+    font-size: 0.88rem;
+    margin-bottom: 24px;
+  }
+
+  .privacy-note {
+    font-size: 0.8rem;
+    padding: 8px 12px;
+  }
+
+  .add-doc-info {
+    margin-top: 28px;
+    padding: 16px;
+  }
+
+  .add-doc-info h3 {
+    font-size: 0.95rem;
+  }
+
+  .add-doc-info ol {
+    font-size: 0.82rem;
+  }
+
+  .site-footer {
+    padding: 18px 0;
+    font-size: 0.78rem;
+  }
+}
+
+/* --- 响应式 — 平板端 (601px - 768px) ------------------------------ */
+@media (min-width: 601px) and (max-width: 768px) {
+  .doc-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+  }
+
+  .btn {
+    min-height: 42px;
   }
 }

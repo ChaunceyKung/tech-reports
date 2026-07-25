@@ -23,9 +23,12 @@ See https://github.com/adobe-type-tools/cmap-resources
 <html dir="ltr" mozdisallowselectionprint>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="google" content="notranslate" />
-    <title>PDF.js viewer</title>
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <title>PDF 阅读器</title>
 
   <meta
       http-equiv="Content-Security-Policy"
@@ -37,8 +40,10 @@ See https://github.com/adobe-type-tools/cmap-resources
 <script src="../build/pdf.mjs" type="module"></script>
 
     <link rel="stylesheet" href="viewer.css" />
+    <link rel="stylesheet" href="mobile-viewer.css" />
 
   <script src="viewer.mjs" type="module"></script>
+  <script src="mobile-viewer.js" type="module"></script>
   </head>
 
   <body tabindex="0">
@@ -1209,5 +1214,22 @@ See https://github.com/adobe-type-tools/cmap-resources
     </div>
     <!-- outerContainer -->
     <div id="printContainer"></div>
+
+    <!-- Mobile / error fallback overlay -->
+    <div id="viewerFallback" class="viewerFallback hidden">
+      <div class="viewerFallbackCard">
+        <div class="viewerFallbackIcon">⚠️</div>
+        <h2>PDF 在线阅读器未能正常加载</h2>
+        <p class="viewerFallbackHint">你可以尝试以下方式查看文档：</p>
+        <div class="viewerFallbackActions">
+          <a id="fallbackSystemOpen" class="viewerFallbackBtn viewerFallbackBtnPrimary" href="#">↗ 使用系统阅读器打开</a>
+          <a id="fallbackDownload" class="viewerFallbackBtn viewerFallbackBtnOutline" href="#">📥 直接下载 PDF</a>
+        </div>
+        <p class="viewerFallbackFooter">
+          建议使用最新版 Safari、Chrome、Edge 或 Firefox。<br />
+          微信内置浏览器用户可选择"在浏览器中打开"。
+        </p>
+      </div>
+    </div>
   </body>
 </html>

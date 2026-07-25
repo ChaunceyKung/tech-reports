@@ -30,11 +30,22 @@ python scripts/serve_docs.py
 2. 在 `docs/assets/app.js` 的 `documents` 数组中添加条目；
 3. 提交并推送代码。
 
+### 手机浏览
+
+本项目同时支持电脑和手机浏览。
+
+- 电脑端默认使用完整 PDF.js 阅读器（新标签页打开）；
+- 手机端使用适配后的 PDF.js 阅读器（当前页面打开），默认按页面宽度显示；
+- 手机端提供"系统阅读器打开"按钮，可在 PDF.js 加载失败时作为备用；
+- 建议使用最新版 Safari、Chrome、Edge 或 Firefox；
+- 微信内置浏览器出现问题时，可选择"在浏览器中打开"。
+
 ### 技术架构
 
 - 纯静态网站，无需后端服务
-- 基于 [Mozilla PDF.js](https://github.com/mozilla/pdf.js) v6.1.200 的 Generic Viewer
+- 基于 [Mozilla PDF.js](https://github.com/mozilla/pdf.js) v6.1.200 的 Generic Viewer（Modern Build）
 - 使用原生 HTML、CSS、JavaScript，无框架依赖
+- 移动端通过独立 CSS 覆盖和 JS 逻辑适配，不修改 PDF.js 核心代码
 
 ## ⚠️ 安全与隐私提示
 

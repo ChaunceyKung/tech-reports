@@ -54,6 +54,17 @@ function buildViewerUrl(pdfPath) {
 }
 
 // ==========================================================================
+// 设备检测
+// ==========================================================================
+function isMobileOrTablet() {
+  return (
+    window.matchMedia("(max-width: 768px)").matches ||
+    window.matchMedia("(pointer: coarse)").matches ||
+    navigator.maxTouchPoints > 0
+  );
+}
+
+// ==========================================================================
 // 渲染文档卡片
 // ==========================================================================
 function renderDocCards() {
@@ -70,10 +81,11 @@ function renderDocCards() {
     return;
   }
 
+  var mobile = isMobileOrTablet();
   var html = "";
   documents.forEach(function (doc) {
     var viewerUrl = buildViewerUrl(doc.file);
-    var directUrl = doc.file; // 原始 PDF 直接链接
+    var directUrl = encodePath(doc.file); // 原始 PDF 直接链接
 
     html += '<div class="doc-card">';
 
@@ -97,16 +109,34 @@ function renderDocCards() {
     }
 
     html += '<div class="doc-actions">';
-    html +=
-      '<a class="btn btn-primary" href="' +
-      viewerUrl +
-      '" target="_blank">📖 在线阅读</a>';
-    html +=
-      '<a class="btn btn-outline" href="' +
-      encodePath(doc.file) +
-      '">📥 下载 PDF</a>';
-    html += "</div>";
 
+    if (mobile) {
+      // 手机/平板：手机阅读 + 系统阅读器打开 + 下载
+      html +=
+        '<a class="btn btn-primary" href="' +
+        viewerUrl +
+        '">📱 手机阅读</a>';
+      html +=
+        '<a class="btn btn-outline" href="' +
+        directUrl +
+        '">↗ 系统阅读器打开</a>';
+      html +=
+        '<a class="btn btn-outline" href="' +
+        directUrl +
+        '" download>📥 下载 PDF</a>';
+    } else {
+      // 桌面：在线阅读（新标签页） + 下载
+      html +=
+        '<a class="btn btn-primary" href="' +
+        viewerUrl +
+        '" target="_blank">📖 在线阅读</a>';
+      html +=
+        '<a class="btn btn-outline" href="' +
+        directUrl +
+        '">📥 下载 PDF</a>';
+    }
+
+    html += "</div>";
     html += "</div>";
   });
 

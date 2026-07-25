@@ -1,0 +1,460 @@
+/* ==========================================================================
+   PDF.js Viewer — 移动端样式覆盖
+   仅在 (max-width: 768px) 或触屏设备时生效
+   ========================================================================== */
+
+@media (max-width: 768px), (pointer: coarse) {
+
+  /* --- 基础 -------------------------------------------------------- */
+  html, body {
+    height: 100dvh;
+    height: 100vh;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #outerContainer {
+    height: 100dvh;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  #mainContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+  }
+
+  #viewerContainer {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+  }
+
+  /* PDF 页面间距 */
+  .pdfViewer .page {
+    margin-bottom: 6px;
+    border: none;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+
+  /* --- 工具栏 — 精简布局 ------------------------------------------- */
+  #toolbarContainer {
+    padding: 4px 6px;
+    padding-top: calc(4px + env(safe-area-inset-top, 0px));
+    border-bottom: 1px solid #e0e0e0;
+    background: #fff;
+    flex-shrink: 0;
+  }
+
+  .toolbar {
+    position: static;
+    padding: 0;
+  }
+
+  #toolbarViewer {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2px;
+    overflow: hidden;
+  }
+
+  #toolbarViewerLeft {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  #toolbarViewerMiddle {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex: 0 0 auto;
+  }
+
+  #toolbarViewerRight {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex: 0 0 auto;
+  }
+
+  /* --- 工具栏按钮 — 触控尺寸 44px --------------------------------- */
+  .toolbarButton {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+  }
+
+  .toolbarButton::before {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* --- 隐藏桌面专用按钮 -------------------------------------------- */
+  #toolbarViewerMiddle .dropdownToolbarButton,
+  #scaleSelectContainer {
+    display: none;
+  }
+
+  #editorModeButtons,
+  #editorModeSeparator {
+    display: none;
+  }
+
+  #secondaryToolbarToggle {
+    display: flex;
+  }
+
+  .hiddenSmallView {
+    display: none !important;
+  }
+
+  .hiddenMediumView {
+    display: flex !important;
+  }
+
+  /* --- 页码区域 ---------------------------------------------------- */
+  #toolbarViewerLeft .toolbarHorizontalGroup:last-child {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  #pageNumber {
+    width: 44px;
+    height: 40px;
+    font-size: 15px;
+    text-align: center;
+    padding: 0 4px;
+  }
+
+  #numPages {
+    font-size: 13px;
+    min-width: 30px;
+    text-align: center;
+  }
+
+  /* --- 上一页/下一页 隐藏（手机用滑动手势） ------------------------ */
+  #previous, #next,
+  .splitToolbarButtonSeparator {
+    display: none !important;
+  }
+
+  #toolbarViewerLeft .toolbarHorizontalGroup.hiddenSmallView,
+  #toolbarViewerLeft > .toolbarHorizontalGroup:nth-child(3) {
+    display: none !important;
+  }
+
+  /* --- 缩放按钮保留 ------------------------------------------------ */
+  #zoomOutButton,
+  #zoomInButton {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* --- 打印、下载在更多菜单中，工具栏保留核心按钮 ------------------ */
+  #toolbarViewerRight .hiddenMediumView {
+    display: none !important;
+  }
+
+  /* --- 加载进度条 ------------------------------------------------ */
+  #loadingBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10000;
+    height: 3px;
+  }
+
+  #loadingBar .progress {
+    height: 3px;
+  }
+
+  /* --- 查找栏 — 移动端适配 ---------------------------------------- */
+  #findbar {
+    position: fixed;
+    top: 0;
+    top: env(safe-area-inset-top, 0px);
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 8px 10px;
+    padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    max-width: 100vw;
+    overflow: hidden;
+    flex-direction: column;
+  }
+
+  #findInputContainer {
+    display: flex;
+    width: 100%;
+    gap: 4px;
+  }
+
+  #findInput {
+    flex: 1;
+    min-width: 0;
+    height: 40px;
+    font-size: 16px;  /* 防止 iOS 自动缩放 */
+    padding: 0 10px;
+  }
+
+  #findbarOptionsOneContainer,
+  #findbarOptionsTwoContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 13px;
+  }
+
+  #findbarMessageContainer {
+    width: 100%;
+    font-size: 13px;
+    flex-wrap: wrap;
+  }
+
+  #findResultsCount {
+    white-space: normal;
+  }
+
+  #findMsg {
+    white-space: normal;
+  }
+
+  /* --- 侧边栏 — 覆盖式 -------------------------------------------- */
+  #viewsManager {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: min(85vw, 340px) !important;
+    max-width: 340px;
+    z-index: 10001;
+    background: #fff;
+    box-shadow: 2px 0 16px rgba(0,0,0,0.2);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  /* 侧边栏遮罩 */
+  #viewsManagerOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.35);
+    z-index: 10000;
+  }
+
+  #viewsManagerOverlay.visible {
+    display: block;
+  }
+
+  /* --- 编辑器评论侧边栏 -------------------------------------------- */
+  #editorCommentsSidebar {
+    position: fixed !important;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(85vw, 340px) !important;
+    max-width: 340px;
+    z-index: 10001;
+    background: #fff;
+    box-shadow: -2px 0 16px rgba(0,0,0,0.2);
+    overflow-y: auto;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  /* --- 更多菜单 — 移动端优化 -------------------------------------- */
+  #secondaryToolbar {
+    position: fixed;
+    top: 52px;
+    top: calc(52px + env(safe-area-inset-top, 0px));
+    right: 8px;
+    z-index: 10002;
+    max-height: calc(100dvh - 70px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+    overflow-y: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+    min-width: 200px;
+  }
+
+  #secondaryToolbar .toolbarButton {
+    width: 100%;
+    height: 44px;
+    justify-content: flex-start;
+    padding: 0 14px;
+    font-size: 14px;
+    border-radius: 0;
+  }
+
+  #secondaryToolbar .horizontalToolbarSeparator {
+    margin: 4px 0;
+  }
+
+  /* --- 对话框 — 移动端适配 ---------------------------------------- */
+  dialog {
+    max-width: 92vw;
+    max-height: 85dvh;
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  /* --- 错误/备用覆盖层 -------------------------------------------- */
+  .viewerFallback {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    padding: 20px;
+    padding-top: env(safe-area-inset-top, 20px);
+    padding-bottom: env(safe-area-inset-bottom, 20px);
+  }
+
+  .viewerFallback.hidden {
+    display: none;
+  }
+
+  .viewerFallbackCard {
+    background: #fff;
+    border-radius: 14px;
+    padding: 28px 22px;
+    max-width: 380px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  }
+
+  .viewerFallbackIcon {
+    font-size: 48px;
+    margin-bottom: 12px;
+  }
+
+  .viewerFallbackCard h2 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  .viewerFallbackHint {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 18px;
+  }
+
+  .viewerFallbackActions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .viewerFallbackBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 10px;
+    text-decoration: none;
+    min-height: 48px;
+    cursor: pointer;
+    border: none;
+  }
+
+  .viewerFallbackBtnPrimary {
+    background: #1a56db;
+    color: #fff;
+  }
+
+  .viewerFallbackBtnOutline {
+    background: transparent;
+    color: #1a56db;
+    border: 1.5px solid #1a56db;
+  }
+
+  .viewerFallbackFooter {
+    font-size: 0.78rem;
+    color: #999;
+    line-height: 1.5;
+  }
+}
+
+/* --- 小屏手机额外优化 (≤ 400px) ----------------------------------- */
+@media (max-width: 400px) {
+  #toolbarViewer {
+    gap: 1px;
+  }
+
+  .toolbarButton {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+    border-radius: 6px;
+  }
+
+  #pageNumber {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  #toolbarContainer {
+    padding: 2px 4px;
+    padding-top: calc(2px + env(safe-area-inset-top, 0px));
+  }
+
+  .pdfViewer .page {
+    margin-bottom: 4px;
+  }
+}
+
+/* --- 平板横屏 (768px - 1024px) — 轻量优化 ------------------------- */
+@media (min-width: 769px) and (max-width: 1024px) and (pointer: coarse) {
+  .toolbarButton {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    min-height: 42px;
+  }
+
+  #pageNumber {
+    height: 38px;
+  }
+}
